@@ -26,7 +26,7 @@ function App() {
     // Function to clear the cart
     const clearCart = async () => {
         // setCart([]);
-        const response = await axios.delete("http://localhost:5000/api/clearcart");
+        const response = await axios.delete("https://ecommerce-backend-e6j1.onrender.com/api/clearcart");
 
         setCartCount(0);
 
@@ -35,7 +35,7 @@ function App() {
     // Fetch cart count and update state
     const updateCartCount = async () => {
 
-        const response = await axios.get("https://ecommerce-backend-weld-iota.vercel.app/api/getcartcount");
+        const response = await axios.get("https://ecommerce-backend-e6j1.onrender.com/api/getcartcount");
 //        const response = await axios.get("http://localhost:5000/api/getcartcount");
 
         const count = Number(response.data);
