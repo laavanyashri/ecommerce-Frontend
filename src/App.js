@@ -35,7 +35,9 @@ function App() {
     // Fetch cart count and update state
     const updateCartCount = async () => {
 
-        const response = await axios.get("http://localhost:5000/api/getcartcount");
+        const response = await axios.get("https://ecommerce-backend-weld-iota.vercel.app/api/getcartcount");
+//        const response = await axios.get("http://localhost:5000/api/getcartcount");
+
         const count = Number(response.data);
         if (count > 0) {
             setCartCount(count);

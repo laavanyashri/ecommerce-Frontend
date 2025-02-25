@@ -76,8 +76,9 @@ async function addproducts() {
   const today = new Date();
   const date = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   const categoryname = "Electronics";
-
-  let categorydata = await axios.get(`http://localhost:5000/api/categorybyname/${categoryname}`);
+ 
+  //let categorydata = await axios.get(`http://localhost:5000/api/categorybyname/${categoryname}`);
+    let categorydata = await axios.get(`https://ecommerce-backend-weld-iota.vercel.app/api/categorybyname/${categoryname}`);
   let productsdata = [{
       name: "Laptop", category: { name: categorydata.data.name, _id: categorydata.data._id }, images: [{ imgurl: Acer1, name: "Acer i3", price: "Rs.40,000", stock: 6 },
       { imgurl: Apple, name: "Apple Mac series4", price: "Rs.45,000", stock: 8 }, { imgurl: Dell_1, name: "Dell Vostra 15", price: "Rs.36,000", stock: 4 }, { imgurl: Dell_2, name: "Dell latitude", price: "Rs.48,000", stock: 2 },
@@ -107,7 +108,9 @@ async function addproducts() {
   // { name: "Mobile", category: { name: categorydata.data.name, _id: categorydata.data._id }, images: ["../assests/Electronics/mobile/mobile1.png", "../assests/Electronics/mobile/mobile2.png", "../assests/Electronics/mobile/mobile3.png", "../assests/Electronics/mobile/mobile4.png"], price: 20000, stocks: 20 },
   // ]
   //console.log("the productsdat",productsdata);
-  axios.post("http://localhost:5000/api/products", productsdata).then((res) => {
+  axios.post("https://ecommerce-backend-weld-iota.vercel.app/api/products", productsdata).then((res) => {
+    //axios.post("http://localhost:5000/api/products", productsdata).then((res) => {
+
       console.log(res.data)
   }).catch(() => {
       console.log("Error fetching data")

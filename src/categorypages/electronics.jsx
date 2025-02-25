@@ -50,7 +50,9 @@ function Electronics({ updateCartCount }) {
                 ? `?categories=${selectedCategories.join(",")}`
                 : "";
 
-            const data = await axios.get(`http://localhost:5000/api/filterproducts${prouductquery}`);
+            const data = await axios.get(`https://ecommerce-backend-weld-iota.vercel.app/api/filterproducts${prouductquery}`);
+           // const data = await axios.get(`http://localhost:5000/api/filterproducts${prouductquery}`);
+
             setProducts(data.data);
 
         };
@@ -63,7 +65,9 @@ function Electronics({ updateCartCount }) {
     async function getAllProductcategories() {
         //get products
         const categoryname = "Electronics";
-        let categorydata = await axios.get(`http://localhost:5000/api/productsbycategory/${categoryname}`);
+       
+        let categorydata = await axios.get(`https://ecommerce-backend-weld-iota.vercel.app/api/productsbycategory/${categoryname}`);
+       // let categorydata = await axios.get(`http://localhost:5000/api/productsbycategory/${categoryname}`);
 
         setProducts(categorydata.data);
         setAllCategories(categorydata.data.name);//initially set all category name
@@ -77,7 +81,9 @@ function Electronics({ updateCartCount }) {
         console.log("the cart id", productname)
         let cartdata = { productname: productname.trim(), productcategory: productcategory.trim(), date: date, imageid: imageid }
 
-     axios.post("http://localhost:5000/api/addcartitems", cartdata).then(response=> {
+     axios.post("https://ecommerce-backend-weld-iota.vercel.app/api/addcartitems", cartdata).then(response=> {
+       // axios.post("http://localhost:5000/api/addcartitems", cartdata).then(response=> {
+
         addToCartCount(response.data)
 
             updateCartCount()

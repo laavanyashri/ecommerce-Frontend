@@ -56,7 +56,9 @@ function Navbar({ cartCount }) {
         const date = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
       
         let categorydata = [{ name: "Electronics", description: "All Electronics items like laptop..mobile", date: date }, { name: "Men", description: "Men Clothes,acessories,shoes", date: date }, { name: "Women", description: "Women Clothes,acessories,shoes", date: date }]
-        axios.post("http://localhost:5000/api/category", categorydata).then((res) => {
+        axios.post("https://ecommerce-backend-weld-iota.vercel.app/api/category", categorydata).then((res) => {
+           // axios.post("http://localhost:5000/api/category", categorydata).then((res) => {
+
             console.log(res.data)
         }).catch((error) => {
             console.log("Error fetching data",error)

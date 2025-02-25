@@ -73,7 +73,9 @@ const ViewCart = () => {
 
     const getCartItems = async () => {
 
-        let cartitems = await axios.get(`http://localhost:5000/api/getcartitems${userid}`);
+        let cartitems = await axios.get(`https://ecommerce-backend-weld-iota.vercel.app/api/getcartitems${userid}`);
+       // let cartitems = await axios.get(`http://localhost:5000/api/getcartitems${userid}`);
+
         console.log("the cartitems", cartitems);
         if(cartitems.data.length>0)
         {
@@ -83,7 +85,8 @@ const ViewCart = () => {
         // Convert the array into a query string, e.g. ?ids=1&ids=2&ids=3&ids=4
         const queryString = new URLSearchParams({ image: filterprouctsbyimage }).toString();
         //get product images ,price , etc
-        let productitems = await axios.get(`http://localhost:5000/api/getproducts?${queryString}`);
+        let productitems = await axios.get(`https://ecommerce-backend-weld-iota.vercel.app/api/getproducts?${queryString}`);
+       // let productitems = await axios.get(`http://localhost:5000/api/getproducts?${queryString}`);
 
         setCart(productitems.data);
         }
@@ -95,7 +98,9 @@ const ViewCart = () => {
      
          const requestdata={userid:userid,cartids:cartitemids?.cartitems ?? []  }// Ensure it's an array
 
-        let updatedcart = await axios.post('http://localhost:5000/api/updatecartuser',requestdata);
+        let updatedcart = await axios.post('https://ecommerce-backend-weld-iota.vercel.app/api/updatecartuser',requestdata);
+//        let updatedcart = await axios.post('http://localhost:5000/api/updatecartuser',requestdata);
+
 console.log("teh updateddat",updatedcart);
         if(updatedcart.data.length>0)
         {
@@ -105,7 +110,8 @@ console.log("teh updateddat",updatedcart);
         // Convert the array into a query string, e.g. ?ids=1&ids=2&ids=3&ids=4
         const queryString = new URLSearchParams({ image: filterprouctsbyimage }).toString();
         //get product images ,price , etc
-        let productitems = await axios.get(`http://localhost:5000/api/getproducts?${queryString}`);
+        let productitems = await axios.get(`https://ecommerce-backend-weld-iota.vercel.app/api/getproducts?${queryString}`);
+      //  let productitems = await axios.get(`http://localhost:5000/api/getproducts?${queryString}`);
 
         setCart(productitems.data);
        }
@@ -134,7 +140,9 @@ console.log("teh updateddat",updatedcart);
     const handleDelete = async(imageid) => {
         try {
           
-            const response = await axios.delete(`http://localhost:5000/api/updateImageFromCart/${imageid}`);
+            const response = await axios.delete(`https://ecommerce-backend-weld-iota.vercel.app/api/updateImageFromCart/${imageid}`);
+           // const response = await axios.delete(`http://localhost:5000/api/updateImageFromCart/${imageid}`);
+
             console.log("the deelted cart",response)
             getCartItems();
             removeFromCart(response._id)
