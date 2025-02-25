@@ -1,0 +1,78 @@
+ return (
+        <Container maxWidth="md">
+            <Typography variant="h4" sx={{ my: 3, textAlign: "center" }}>
+                🛒 View Cart
+            </Typography>
+
+            {/* Cart Items */}
+            <Paper sx={{ p: 3, mb: 3 }}>
+                {cart.map((imagesection, index) => (
+                    <div key={index}>
+                        {imagesection.images.map((item, index2) => (
+                            <Grid container key={index2} spacing={2} alignItems="center">
+                                <Grid item xs={6}>
+                                    <Typography variant="h6">{item.name}</Typography>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Typography variant="body1">x{item.stock}</Typography>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Typography variant="body1">${convertPrice(item.price) * item.stock}</Typography>
+                                </Grid>
+                            </Grid>
+                        ))}
+                    </div>
+                ))}
+                <Divider sx={{ my: 2 }} />
+                <Typography variant="h6">Total: ${Carttotal({cart})}</Typography>
+            </Paper>
+
+            {/* Address Form */}
+            <Paper sx={{ p: 3, mb: 3 }}>
+                <Typography variant="h5" gutterBottom>📍 Shipping Address</Typography>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            label="Full Name"
+                            name="name"
+                            value={address.name}
+                            onChange={handleAddressChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            label="Street Address"
+                            name="street"
+                            value={address.street}
+                            onChange={handleAddressChange}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            fullWidth
+                            label="City"
+                            name="city"
+                            value={address.city}
+                            onChange={handleAddressChange}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            fullWidth
+                            label="ZIP Code"
+                            name="zip"
+                            value={address.zip}
+                            onChange={handleAddressChange}
+                        />
+                    </Grid>
+                </Grid>
+            </Paper>
+
+            {/* Checkout Button */}
+            <Button variant="contained" color="primary" fullWidth sx={{ py: 1.5 }}>
+                Proceed to Checkout
+            </Button>
+        </Container>
+    );
